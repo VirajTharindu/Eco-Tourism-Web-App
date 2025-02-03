@@ -1,0 +1,14 @@
+services:
+  frontend:
+    build: ./Eco-Tourism
+
+    container_name: eco-tourism-frontend
+
+    restart: always
+
+    ports:
+      - "3000:80"
+
+    volumes:
+      - ./Eco-Tourism:/app
+      - /app/node_modules
