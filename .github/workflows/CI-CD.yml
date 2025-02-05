@@ -16,10 +16,10 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # Recommended LTS version
+          node-version: "20" # Recommended LTS version
 
       - name: Install dependencies
-        run: npm ci  # Clean install for CI environments
+        run: npm install
 
       - name: Run tests
         run: npm test
