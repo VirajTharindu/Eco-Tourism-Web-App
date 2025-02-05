@@ -1,14 +1,14 @@
-name: CI/CD PIPELINE FOR ECO-TOURISM WEB APP
+name: CI/CD Pipeline for Eco-Tourism Web App
 
 on:
+  push:
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -16,18 +16,17 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 22  # ✅ Matches Vercel's Node.js version
+          node-version: '20'  # Recommended LTS version
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci  # Clean install for CI environments
 
       - name: Run tests
         run: npm test
 
   deploy:
     needs: build-and-test
-    runs-on: ubuntu-latest  # ✅ Corrected capitalization
-
+    runs-on: ubuntu-latest
     steps:
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
@@ -35,3 +34,4 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          scope: ${{ secrets.VERCEL_ORG_ID }}
