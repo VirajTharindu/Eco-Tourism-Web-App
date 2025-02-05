@@ -5,4 +5,9 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   base: "/", // Make sure the base is correctly set
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: "src/test-setup.js",
+  },
 });
