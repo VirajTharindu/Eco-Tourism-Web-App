@@ -16,23 +16,23 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # Recommended LTS version
+          node-version: "20" # Recommended LTS version
 
       - name: Install dependencies
-        working-directory: ./Eco-Tourism   # Navigate to eco-tourism folder
-        run: npm ci  # Clean install for CI environments
+        working-directory: ./Eco-Tourism # Navigate to eco-tourism folder
+        run: npm ci # Clean install for CI environments
 
       - name: Run tests
-        working-directory: ./Eco-Tourism   # Navigate to eco-tourism folder
+        working-directory: ./Eco-Tourism # Navigate to eco-tourism folder
         run: npm test
 
   deploy:
     needs: build-and-test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code  # This ensures the repository is available
+      - name: Checkout code # This ensures the repository is available
         uses: actions/checkout@v3
-      
+
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
         with:
@@ -40,3 +40,8 @@ jobs:
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           scope: ${{ secrets.VERCEL_ORG_ID }}
+
+      - name: Assign Custom Domain
+        run: |
+          npm install -g vercel
+          vercel alias eco-tourism-f.vercel.app --token=${{ secrets.VERCEL_TOKEN }}
