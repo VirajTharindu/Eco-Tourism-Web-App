@@ -13,7 +13,7 @@ jobs:
         
       - name: Navigate to the project directory
         working-directory: ./Eco-Tourism
-        
+        run: echo "Working in $(pwd)"
 
       - name: Install Node.js
         uses: actions/setup-node@v3
