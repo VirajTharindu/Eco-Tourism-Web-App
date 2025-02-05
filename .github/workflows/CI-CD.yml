@@ -1,13 +1,14 @@
 name: CI/CD Pipeline for Eco-Tourism Web App
 
 on:
+  push:
+    branches: [main]
   pull_request:
     branches: [main]
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -15,10 +16,10 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "20"
+          node-version: '20'  # Recommended LTS version
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci  # Clean install for CI environments
 
       - name: Run tests
         run: npm test
