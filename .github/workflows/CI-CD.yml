@@ -1,8 +1,6 @@
 name: CI/CD Pipeline for Eco-Tourism Web App
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
