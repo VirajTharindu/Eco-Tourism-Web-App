@@ -19,9 +19,11 @@ jobs:
           node-version: '20'  # Recommended LTS version
 
       - name: Install dependencies
+        working-directory: ./Eco-Tourism   # Navigate to eco-tourism folder
         run: npm ci  # Clean install for CI environments
 
       - name: Run tests
+        working-directory: ./Eco-Tourism   # Navigate to eco-tourism folder
         run: npm test
 
   deploy:
