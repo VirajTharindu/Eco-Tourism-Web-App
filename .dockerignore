@@ -25,3 +25,5 @@ git
 .gitignore
 
 .env
+
+.vercel
