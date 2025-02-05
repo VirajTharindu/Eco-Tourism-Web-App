@@ -10,16 +10,22 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        
+      - name: Navigate to the project directory
+        working-directory: ./Eco-Tourism
+        run: echo "Working in $(pwd)" 
 
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "20" # Recommended LTS version
+          node-version: "20" 
 
       - name: Install dependencies
+      - working-directory: ./Eco-Tourism
         run: npm install
 
       - name: Run tests
+      - working-directory: ./Eco-Tourism
         run: npm test
 
   deploy:
