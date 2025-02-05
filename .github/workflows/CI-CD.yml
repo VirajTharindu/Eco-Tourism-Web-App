@@ -30,6 +30,9 @@ jobs:
     needs: build-and-test
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code  # This ensures the repository is available
+        uses: actions/checkout@v3
+      
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
         with:
