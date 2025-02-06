@@ -9,7 +9,6 @@ on:
 
 jobs:
   build-and-test:
-    if: github.event.pull_request.merged == true && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
