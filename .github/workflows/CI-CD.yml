@@ -37,7 +37,7 @@ jobs:
         id: deploy
         run: |
           npm install -g vercel
-          DEPLOY_URL=$(vercel --yes --token=${{ secrets.VERCEL_TOKEN }} --prod --name eco-tourism)
+          DEPLOY_URL=$(vercel --yes --token=${{ secrets.VERCEL_TOKEN }} --prod --name eco-tourism --cwd ./Eco-Tourism)
           echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
 
 
