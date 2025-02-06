@@ -45,5 +45,12 @@ jobs:
 
       - name: Remove Default Vercel Domain and Assign Custom Domain
         run: |
+
+          # List existing aliases to check if they exist
+          vercel alias ls --token=${{ secrets.VERCEL_TOKEN }}
+
+          # Try to remove the alias only if it exists (ignoring errors)
           vercel alias rm eco-tourism.vercel.app --token=${{ secrets.VERCEL_TOKEN }}
+
+          # Assign the new alias
           vercel alias set eco-tourism-f.vercel.app --token=${{ secrets.VERCEL_TOKEN }}
