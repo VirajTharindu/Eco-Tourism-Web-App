@@ -33,15 +33,14 @@ jobs:
       - name: Checkout code # This ensures the repository is available
         uses: actions/checkout@v3
 
-      - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          scope: ${{ secrets.VERCEL_ORG_ID }}
+      - name: Install Vercel CLI
+        run: npm install -g vercel
 
-      - name: Assign Custom Domain
-        run: |
-          npm install -g vercel
-          vercel alias eco-tourism-f.vercel.app --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy to Vercel
+        run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Assign Alias
+        run: vercel alias set eco-tourism-f.vercel.app --token=${{ secrets.VERCEL_TOKEN }}
