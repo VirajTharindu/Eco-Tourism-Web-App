@@ -23,6 +23,7 @@ function App() {
         </button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR vj styles bro hi hi
+          hi
         </p>
       </div>
       <p className="read-the-docs">
