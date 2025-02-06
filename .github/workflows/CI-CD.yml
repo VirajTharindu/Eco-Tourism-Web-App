@@ -36,28 +36,14 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Deploy to Vercel
-        id: deploy
-        run: |
-          npm install -g vercel
-          
-          # Deploy to Vercel without creating additional auto-generated domains
-          DEPLOY_URL=$(vercel deploy --yes --prod --token=${{ secrets.VERCEL_TOKEN }} --name eco-tourism --cwd ./Eco-Tourism)
-          echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
-
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          scope: ${{ secrets.VERCEL_ORG_ID }}
 
       - name: Assign Custom Domain
         run: |
-        
-          # Fetch the list of existing aliases
-          EXISTING_ALIASES=$(vercel alias ls --token=*** | awk 'NR>2 {print $2}' | grep -v '^eco-tourism-f.vercel.app$')
-
-          # Loop through each alias and remove it
-          while read -r ALIAS; do
-            if [[ -n "$ALIAS" ]]; then
-            echo "Removing alias: $ALIAS"
-            vercel alias rm "$ALIAS" --token=***
-            fi
-          done <<< "$EXISTING_ALIASES"
-
-          # Assign only the correct alias
-          vercel alias set eco-tourism-f.vercel.app --token=***
+          npm install -g vercel
+          vercel alias eco-tourism-f.vercel.app --token=${{ secrets.VERCEL_TOKEN }}
