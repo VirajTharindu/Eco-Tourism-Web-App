@@ -41,7 +41,6 @@ jobs:
           DEPLOY_URL=$(vercel --yes --token=${{ secrets.VERCEL_TOKEN }} --prod --name eco-tourism)
           echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
 
-      - name: Remove Default Vercel Domain and Assign Custom Domain
+      - name: Assign Custom Domain
         run: |
-          
-          vercel alias set eco-tourism-f.vercel.app --token=${{ secrets.VERCEL_TOKEN }}
+          vercel alias set $DEPLOY_URL eco-tourism-f.vercel.app --token=${{ secrets.VERCEL_TOKEN }}
