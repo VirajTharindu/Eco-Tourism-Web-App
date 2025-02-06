@@ -1,11 +1,10 @@
 name: CI/CD Pipeline for Eco-Tourism Web App
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
     types: [closed] #Runs only when a PR is merged (closed) into `main`
+  workflow_dispatch: # Allows manual execution via GitHub Actions
 
 jobs:
   build-and-test:
