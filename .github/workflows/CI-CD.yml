@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-and-test:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+    if: github.ref == 'refs/heads/main'  # Runs only when on `main`
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
