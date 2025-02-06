@@ -38,7 +38,7 @@ jobs:
         id: deploy
         run: |
           npm install -g vercel
-          DEPLOY_URL=$(vercel --yes --token=${{ secrets.VERCEL_TOKEN }} --prod --name eco-tourism --cwd ./Eco-Tourism)
+          DEPLOY_URL=$(vercel --yes --token=${{ secrets.VERCEL_TOKEN }} --prod --name eco-tourism)
           echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
 
       - name: Remove Default Vercel Domain and Assign Custom Domain
