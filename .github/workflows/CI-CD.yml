@@ -45,5 +45,5 @@ jobs:
 
       - name: Remove Default Vercel Domain and Assign Custom Domain
         run: |
-          vercel alias --remove eco-tourism.vercel.app --token=${{ secrets.VERCEL_TOKEN }}
+          vercel alias rm eco-tourism.vercel.app --token=${{ secrets.VERCEL_TOKEN }}
           vercel alias set eco-tourism-f.vercel.app --token=${{ secrets.VERCEL_TOKEN }}
